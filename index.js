@@ -1,58 +1,20 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const mongoose = require('mongoose');
+const app = express();
+require('dotenv').config();
 
 mongoose.connect(process.env.DB_CONNECTION);
 
-const app = express();
+const userRoute = require("./routes/User");
+const adminRoute = require("./routes/Admin");
+const courseRoute = require("./routes/Courses");
 
-function userAuth(req, res, next){
-    const token = req.headers["authorization"];
-    if(!token){
-        return res.status(401).send("Access Denied");
-    }
-    try{
-        const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-        req.user = verified;
-        next();
-    }catch(err){
-        res.status(400).send("Invalid Token");
-    }
-}
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/admin", adminRoute);
+app.use("/api/v1/course", courseRoute);
 
-function adminAuth(req, res, next){
-    const token = req.headers["authorization"];
-    if(!token){
-        return res.status(401).send("Access Denied");
-    }
-    try{
-        const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-        req.admin = verified;
-        next();
-    }catch(err){
-        res.status(400).send("Invalid Token");
-    }
-}
-
-app.post("/user/signup", userAuth, function(req, res){
-
-})
-
-app.post("/user/signin", userAuth, function(req, res){
-
-})
-
-app.get("/user/purchases", userAuth, function(req, res){
-
-})
-
-app.post("/course/purchase", userAuth, function(req, res){
-
-})
-
-app.get("/courses", userAuth, function(req, res){
-
-})
-
-
+app.listen(3000, () => {
+    console.log("server is running");    
+});
 
