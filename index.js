@@ -34,36 +34,25 @@ function adminAuth(req, res, next){
     }
 }
 
-app.post("/user-signup", function(req, res){
+app.post("/user/signup", userAuth, function(req, res){
 
 })
 
-app.post("/user-signin", function(req, res){
+app.post("/user/signin", userAuth, function(req, res){
 
 })
 
-app.post("/buy-course", function(req, res){
+app.get("/user/purchases", userAuth, function(req, res){
 
 })
 
-app.get("/my-course", function(req, res){
+app.post("/course/purchase", userAuth, function(req, res){
 
 })
 
-app.post("/admin-signup", function(req, res){
+app.get("/courses", userAuth, function(req, res){
 
 })
 
-app.post("/admin-signin", function(req, res){
-
-})
-
-app.post("/courses", function(req, res){
-
-})
-
-app.delete("/courses", function(req, res){
-
-})
 
 
