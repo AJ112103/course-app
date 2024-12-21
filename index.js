@@ -12,5 +12,5 @@ app.use("/api/v1/admin", adminRoute);
 app.use("/api/v1/course", courseRoute);
 
 app.listen(3000, () => {
-    console.log("server is running");    
+    console.log("listening on port 3000");    
 });
