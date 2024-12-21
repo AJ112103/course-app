@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const userModel = require('../db').UserModel;
+const purchasesModel = require('../db').PurchasesModel;
 
 function userAuth(req, res, next){
     const token = req.headers["authorization"];

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const adminModel = require('../db').AdminModel;
 
 function adminAuth(req, res, next){
     const token = req.headers["authorization"];
@@ -39,7 +40,7 @@ router.put("/course", function(req, res){
 })
 
 router.get("/course/bulk", function(req, res){
-    
+
 })
 
 module.exports = router;
