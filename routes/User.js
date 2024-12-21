@@ -22,13 +22,15 @@ router.post("/signup", function(req, res){
     })
 })
 
-router.post("/signin", userAuth, function(req, res){
+router.post("/signin", function(req, res){
     res.json({
         message: "User Sign In"
     })
 })
 
-router.get("/purchases", userAuth, function(req, res){
+router.use(userAuth);
+
+router.get("/purchases", function(req, res){
 
 })
 

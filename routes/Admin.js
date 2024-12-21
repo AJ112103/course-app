@@ -16,24 +16,30 @@ function adminAuth(req, res, next){
     }
 }
 
-router.post("/signup", adminAuth, function(req, res){
+router.post("/signup", function(req, res){
 
 })
 
-router.post("/signin", adminAuth, function(req, res){
+router.post("/signin", function(req, res){
 
 })
 
-router.post("/create-course", adminAuth, function(req, res){
+router.use(adminAuth);
+
+router.post("/course", function(req, res){
 
 })
 
-router.delete("/delete-course", adminAuth, function(req, res){
+router.delete("/course", function(req, res){
 
 })
 
-router.put("/add-course-content", adminAuth, function(req, res){
+router.put("/course", function(req, res){
 
+})
+
+router.get("/course/bulk", function(req, res){
+    
 })
 
 module.exports = router;
