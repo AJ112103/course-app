@@ -5,20 +5,7 @@ const bcrypt = require('bcrypt');
 const { signupSchema, signinSchema } = require('../authSchemas');
 const userModel = require('../db').UserModel;
 const purchasesModel = require('../db').PurchasesModel;
-
-function userAuth(req, res, next) {
-  const token = req.headers.token;
-  if (!token) {
-    return res.status(401).send("Access Denied");
-  }
-  try {
-    const verified = jwt.verify(token, process.env.USER_TOKEN_SECRET);
-    req.user = verified;
-    next();
-  } catch (err) {
-    res.status(400).send("Invalid Token");
-  }
-}
+const userAuth = require('../middleware/userAuth');
 
 router.post("/signup", async function(req, res) {
   try {

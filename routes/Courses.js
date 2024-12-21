@@ -4,20 +4,7 @@ const jwt = require('jsonwebtoken');
 const courseModel = require('../db').CourseModel;
 const purchasesModel = require('../db').PurchasesModel;
 const { z } = require('zod');
-
-function userAuth(req, res, next) {
-  const token = req.headers.token;
-  if (!token) {
-    return res.status(401).send("Access Denied");
-  }
-  try {
-    const verified = jwt.verify(token, process.env.USER_TOKEN_SECRET);
-    req.user = verified;
-    next();
-  } catch (err) {
-    res.status(400).send("Invalid Token");
-  }
-}
+const userAuth = require('../middleware/userAuth');
 
 const purchaseSchema = z.object({
   courseId: z.string(),
